@@ -1,7 +1,15 @@
 ---
-- name: awxtest3
+- name: awxtest
   hosts: localhost
   become: yes
   tasks:
     - name: Create Docker service
-      command: "/usr/bin/docker service create --name test1 --replicas 3 --constraint 'node.role==worker' --with-registry-auth -p 8001:80 nginx"
+      docker_swarm_service:
+        name: test1
+        state: present
+        replicas: 3
+        placement:
+          constraints:
+            - "node.role==worker"
+        args: "--with-registry-auth -p 8001:80"
+        image: "nginx:latest"
