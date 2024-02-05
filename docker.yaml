@@ -1,0 +1,16 @@
+---
+- name: awxtest
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Create Docker service
+      docker_swarm_service:
+        name: test1
+        state: present
+        replicas: 3
+        constraints:
+          - "node.role==worker"
+        with_registry_auth: yes
+        published_ports:
+          - "8001:80"
+        image: "nginx:latest"
