@@ -1,6 +1,6 @@
 ---
 - name: awxtest
-  hosts: localhost
+  hosts: all
   become: yes
   tasks:
     - name: Create Docker service
