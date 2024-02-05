@@ -2,6 +2,8 @@
 - name: awxtest
   hosts: localhost
   become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3.6
   tasks:
     - name: Create Docker service
       docker_swarm_service:
