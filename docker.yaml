@@ -3,8 +3,8 @@
   hosts: localhost
   become: yes
   gather_facts: false
-  vars:
-    ansible_python_interpreter: /usr/bin/python3.8
+  #vars:
+    #ansible_python_interpreter: /usr/bin/python3.8
   tasks:
     - name: Create Docker service
       docker_swarm_service:
