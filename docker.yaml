@@ -1,7 +1,8 @@
 ---
 - name: awxtest
-  hosts: localhost
+  hosts: your_host
   become: yes
+  gather_facts: false  # gather_facts를 비활성화하여 Gathering Facts 단계를 건너뜁니다.
   vars:
     ansible_python_interpreter: /usr/bin/python3.8
   tasks:
