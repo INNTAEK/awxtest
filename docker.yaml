@@ -1,15 +1,22 @@
 ---
 - name: awxtest
-  hosts: all
+  hosts: localhost
   become: yes
   tasks:
     - name: Create Docker service
-      docker_service:
+      docker_stack:
         name: test1
         state: present
-        constraints: "node.role==worker"
-        replicas: 3
+        compose:
+          version: "3"
+          services:
+            nginx:
+              image: nginx
+              replicas: 3
+              ports:
+                - "8001:80"
+              deploy:
+                placement:
+                  constraints:
+                    - "node.role==worker"
         with_registry_auth: yes
-        published_ports:
-          - "8001:80"
-        image: nginx
