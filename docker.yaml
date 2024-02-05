@@ -1,7 +1,7 @@
 ---
-- name: awxtest2
+- name: awxtest3
   hosts: localhost
   become: yes
   tasks:
     - name: Create Docker service
-      command: "docker service create --name test1 --replicas 3 --constraint 'node.role==worker' --with-registry-auth -p 8001:80 nginx"
+      command: "/usr/bin/docker service create --name test1 --replicas 3 --constraint 'node.role==worker' --with-registry-auth -p 8001:80 nginx"
