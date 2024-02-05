@@ -14,3 +14,4 @@
         image: "nginx:latest"
         publish:
           - "8001:80"
+      no_log: true
