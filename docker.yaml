@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   tasks:
-    - name: Create Docker service
+    - name: Docker 서비스 생성
       docker_swarm_service:
         name: test1
         state: present
@@ -11,6 +11,6 @@
         placement:
           constraints:
             - "node.role==worker"
-        published_ports:
-          - "8001:80"
         image: "nginx:latest"
+        publish:
+          - "8001:80"
